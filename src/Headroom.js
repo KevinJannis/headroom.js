@@ -59,6 +59,7 @@ function Headroom (elem, options) {
   this.tolerance        = normalizeTolerance(options.tolerance);
   this.classes          = options.classes;
   this.offset           = options.offset;
+  this.offsetBottom     = options.offsetBottom;
   this.scroller         = options.scroller;
   this.initialised      = false;
   this.onPin            = options.onPin;
@@ -357,7 +358,7 @@ Headroom.prototype = {
       this.notTop();
     }
 
-    if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
+    if(currentScrollY + this.getViewportHeight() + this.offsetBottom >= this.getScrollerHeight()) {
       this.bottom();
     }
     else {
@@ -401,6 +402,7 @@ Headroom.options = {
     down : 0
   },
   offset : 0,
+  offsetBottom : 0,
   scroller: window,
   classes : {
     frozen : 'headroom--frozen',
